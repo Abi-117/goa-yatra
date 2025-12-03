@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Plane, Hotel, Utensils, Camera } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import thailandPackage from "@/assets/thailand-package.jpg";
 import baliPackage from "@/assets/bali-package.jpg";
@@ -12,192 +11,175 @@ const packages = [
   {
     id: 1,
     name: "Thailand",
-    duration: "5 Days & 4 Nights",
-    price: "₹24,450",
+    duration: "5 Days and 4 Nights Tour",
+    price: "Rs.24450/-",
     image: thailandPackage,
-    highlights: ["Bangkok City Tour", "Pattaya Beach", "Safari World", "Thai Massage"],
+    note: "Air Fare + visa Extra",
   },
   {
     id: 2,
     name: "Bali",
-    duration: "6 Days & 5 Nights",
-    price: "₹32,999",
+    duration: "6 Days and 5 Nights Tour",
+    price: "Rs.32999/-",
     image: baliPackage,
-    highlights: ["Ubud Rice Terraces", "Tanah Lot Temple", "Kuta Beach", "Spa Treatment"],
+    note: "Air Fare + visa Extra",
   },
   {
     id: 3,
     name: "Maldives",
-    duration: "4 Days & 3 Nights",
-    price: "₹45,999",
+    duration: "4 Days and 3 Nights Tour",
+    price: "Rs.45999/-",
     image: maldivesPackage,
-    highlights: ["Water Villa Stay", "Snorkeling", "Sunset Cruise", "Island Hopping"],
+    note: "Air Fare + visa Extra",
   },
   {
     id: 4,
     name: "Dubai",
-    duration: "5 Days & 4 Nights",
-    price: "₹38,999",
+    duration: "5 Days and 4 Nights Tour",
+    price: "Rs.38999/-",
     image: dubaiPackage,
-    highlights: ["Burj Khalifa", "Desert Safari", "Dubai Mall", "Palm Jumeirah"],
+    note: "Air Fare + visa Extra",
   },
   {
     id: 5,
     name: "Goa",
-    duration: "3 Days & 2 Nights",
-    price: "₹12,999",
+    duration: "3 Days and 2 Nights Tour",
+    price: "Rs.12999/-",
     image: goaPackage,
-    highlights: ["Beach Hopping", "Old Goa Churches", "Water Sports", "Nightlife"],
+    note: "Per Person",
   },
   {
     id: 6,
     name: "Singapore",
-    duration: "4 Days & 3 Nights",
-    price: "₹35,999",
+    duration: "4 Days and 3 Nights Tour",
+    price: "Rs.35999/-",
     image: singaporePackage,
-    highlights: ["Marina Bay Sands", "Sentosa Island", "Gardens by the Bay", "Night Safari"],
+    note: "Air Fare + visa Extra",
   },
-];
-
-const inclusions = [
-  { icon: Hotel, label: "Luxury Hotels" },
-  { icon: Utensils, label: "Meals Included" },
-  { icon: Plane, label: "Transfers" },
-  { icon: Camera, label: "Sightseeing" },
 ];
 
 const Packages = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-24 bg-accent">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full bg-primary/20 text-primary border border-primary/30">
-              Our Packages
-            </span>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-accent-foreground mb-6">
-              Explore Our Travel Packages
-            </h1>
-            <p className="text-lg text-accent-foreground/80">
-              Discover curated travel experiences designed for every type of traveler
-            </p>
-          </div>
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground uppercase tracking-wider">
+            Packages
+          </h1>
         </div>
       </section>
 
-      {/* Inclusions */}
-      <section className="py-12 bg-card border-b border-border">
+      {/* Packages Grid - Poster Style */}
+      <section className="py-12 bg-muted">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-xl font-display font-semibold text-foreground">
-              What's Included in Our Packages
-            </h2>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            {inclusions.map((item, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-primary" />
-                </div>
-                <span className="text-foreground font-medium">{item.label}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            * Air Fare + Visa charges are extra for international packages
-          </p>
-        </div>
-      </section>
-
-      {/* Packages Grid */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className="card-travel group bg-card border border-border"
+                className="relative group cursor-pointer"
               >
-                <div className="relative overflow-hidden aspect-[4/5]">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-accent via-accent/30 to-transparent" />
-                  
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6">
-                    <span className="inline-block self-start px-3 py-1 mb-3 text-xs font-medium rounded-full bg-primary text-primary-foreground">
-                      {pkg.duration}
-                    </span>
-                    <h3 className="text-3xl font-display font-bold text-accent-foreground mb-4">
-                      {pkg.name}
-                    </h3>
-                    
-                    {/* Highlights */}
-                    <ul className="space-y-2 mb-4">
-                      {pkg.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm text-accent-foreground/80">
-                          <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <div className="flex items-center justify-between pt-4 border-t border-accent-foreground/20">
-                      <div>
-                        <span className="text-xs text-accent-foreground/60 block">Starting @</span>
-                        <span className="text-2xl font-display font-bold text-primary">
-                          {pkg.price}
-                        </span>
+                {/* Package Card - Poster Style */}
+                <div className="relative bg-gradient-to-b from-primary to-accent rounded-lg overflow-hidden shadow-elegant">
+                  {/* Header */}
+                  <div className="p-4 text-center">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-background">
+                        {pkg.duration.split(' ')[0]} <span className="text-2xl">{pkg.duration.split(' ')[1]}</span> {pkg.duration.split(' ')[2]}
+                      </span>
+                      <div className="text-right text-background text-xs uppercase">
+                        <div>JOY</div>
+                        <div>TOURISM</div>
                       </div>
-                      <button className="px-6 py-2.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors">
-                        Book Now
-                      </button>
+                    </div>
+                  </div>
+
+                  {/* Destination Name */}
+                  <div className="relative px-4">
+                    <h2 className="text-4xl md:text-5xl title-italic text-background text-center">
+                      {pkg.name}
+                    </h2>
+                    <p className="text-background/80 text-xs text-center mt-1">Per Person</p>
+                  </div>
+
+                  {/* Price Tag */}
+                  <div className="mx-4 mt-4 bg-primary rounded-lg p-3 text-center transform rotate-[-3deg]">
+                    <p className="text-xs text-background/80">Starting @</p>
+                    <p className="text-xl font-bold text-background">{pkg.price}</p>
+                    <p className="text-xs text-background/80">{pkg.note}</p>
+                  </div>
+
+                  {/* Image */}
+                  <div className="mt-4 relative">
+                    <img
+                      src={pkg.image}
+                      alt={pkg.name}
+                      className="w-full h-48 object-cover"
+                    />
+                    {/* Circular Images Overlay */}
+                    <div className="absolute -top-6 left-4 flex gap-2">
+                      <div className="w-16 h-16 rounded-full border-4 border-primary overflow-hidden">
+                        <img src={pkg.image} alt="" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="w-16 h-16 rounded-full border-4 border-primary overflow-hidden">
+                        <img src={pkg.image} alt="" className="w-full h-full object-cover scale-110" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Inclusions */}
+                  <div className="bg-foreground/90 p-4">
+                    <h4 className="text-primary font-semibold text-sm mb-2">Inclusions</h4>
+                    <div className="text-xs text-muted-foreground space-y-1">
+                      <p>• Hotel Accommodation</p>
+                      <p>• Daily Breakfast</p>
+                      <p>• Sightseeing Tours</p>
+                      <p>• Airport Transfers</p>
+                    </div>
+                    
+                    <div className="mt-4 pt-3 border-t border-border">
+                      <p className="text-primary text-xs font-semibold">Fixed Departure</p>
+                      <p className="text-muted-foreground text-xs">Contact: +91 9362556555</p>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Contact CTA */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="bg-accent rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-accent-foreground mb-2">
-                Can't find what you're looking for?
-              </h2>
-              <p className="text-accent-foreground/70">
-                Contact us for custom packages tailored to your needs.
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <a href="tel:+919172994022" className="btn-hero whitespace-nowrap">
-                Call Us Now
-              </a>
-            </div>
+          {/* Carousel Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {[1, 2, 3, 4, 5].map((dot) => (
+              <div
+                key={dot}
+                className={`w-3 h-3 rounded-full ${dot === 1 ? "bg-foreground" : "bg-muted-foreground"}`}
+              />
+            ))}
+          </div>
+
+          {/* Book Now Button */}
+          <div className="text-center mt-8">
+            <Link to="/contact" className="btn-teal text-xl px-12">
+              Book Now
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-accent">
+      {/* CTA Section */}
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-accent-foreground mb-4">
+          <p className="text-primary font-semibold uppercase tracking-widest mb-4">
+            Get Started Today!
+          </p>
+          <h2 className="text-4xl md:text-5xl title-italic text-foreground mb-4">
             Join Us and Discover More!
           </h2>
-          <p className="text-accent-foreground/70 mb-8 max-w-2xl mx-auto">
-            Contact: +91 9362556555 | Website: www.joytourism.in
+          <p className="text-muted-foreground mb-8">
+            Contact: +919362556555 | Website: www.joytourism.in
           </p>
-          <Link to="/services" className="btn-hero">
-            View Our Services
-            <ArrowRight className="w-5 h-5" />
+          <Link to="/contact" className="btn-hero">
+            Contact Us
           </Link>
         </div>
       </section>

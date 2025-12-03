@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -9,78 +10,42 @@ import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 import resort1 from "@/assets/resort-1.jpg";
 import aboutRestaurant from "@/assets/about-restaurant.jpg";
-import heroBeach from "@/assets/hero-beach.jpg";
+import heroRestaurant from "@/assets/hero-restaurant.jpg";
 
 const galleryImages = [
-  { id: 1, src: gallery1, alt: "Luxury Hotel Room", category: "Accommodation" },
-  { id: 2, src: gallery2, alt: "Resort Pool", category: "Amenities" },
-  { id: 3, src: gallery3, alt: "Beach Sunset", category: "Beach" },
-  { id: 4, src: gallery4, alt: "Boat Tour", category: "Activities" },
-  { id: 5, src: gallery5, alt: "Scuba Diving", category: "Adventure" },
-  { id: 6, src: gallery6, alt: "Spa Treatment", category: "Wellness" },
-  { id: 7, src: resort1, alt: "Luxury Resort", category: "Resort" },
-  { id: 8, src: aboutRestaurant, alt: "Ocean View Dining", category: "Dining" },
-  { id: 9, src: heroBeach, alt: "Tropical Beach", category: "Beach" },
+  { id: 1, src: gallery1, alt: "Luxury Hotel Room" },
+  { id: 2, src: gallery2, alt: "Resort Pool" },
+  { id: 3, src: gallery3, alt: "Beach Sunset" },
+  { id: 4, src: gallery4, alt: "Boat Tour" },
+  { id: 5, src: gallery5, alt: "Scuba Diving" },
+  { id: 6, src: gallery6, alt: "Spa Treatment" },
+  { id: 7, src: resort1, alt: "Luxury Resort" },
+  { id: 8, src: aboutRestaurant, alt: "Ocean View Dining" },
+  { id: 9, src: heroRestaurant, alt: "Beach Restaurant" },
 ];
 
-const categories = ["All", "Accommodation", "Beach", "Activities", "Adventure", "Amenities", "Wellness", "Resort", "Dining"];
-
 const Gallery = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const filteredImages = selectedCategory === "All"
-    ? galleryImages
-    : galleryImages.filter((img) => img.category === selectedCategory);
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-24 bg-accent">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full bg-primary/20 text-primary border border-primary/30">
-              Our Gallery
-            </span>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-accent-foreground mb-6">
-              Explore The Gallery
-            </h1>
-            <p className="text-lg text-accent-foreground/80">
-              Glimpses of unforgettable moments from our travelers' journeys
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Filter Tabs */}
-      <section className="py-8 bg-card border-b border-border sticky top-20 z-40">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
-                  selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground uppercase tracking-wider">
+            Explore The Gallery
+          </h1>
         </div>
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-16 bg-background">
+      <section className="py-12 bg-muted">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredImages.map((image) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {galleryImages.map((image) => (
               <div
                 key={image.id}
-                className="group relative aspect-square overflow-hidden rounded-xl cursor-pointer card-travel"
+                className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
                 onClick={() => setSelectedImage(image.src)}
               >
                 <img
@@ -88,16 +53,7 @@ const Gallery = () => {
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/60 transition-all duration-300 flex items-end">
-                  <div className="p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="inline-block px-3 py-1 mb-2 text-xs font-medium rounded-full bg-primary text-primary-foreground">
-                      {image.category}
-                    </span>
-                    <h3 className="text-lg font-display font-semibold text-accent-foreground">
-                      {image.alt}
-                    </h3>
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/40 transition-all duration-300" />
               </div>
             ))}
           </div>
@@ -107,11 +63,11 @@ const Gallery = () => {
       {/* Lightbox */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-accent/95 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <button
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-accent-foreground/10 flex items-center justify-center text-accent-foreground hover:bg-accent-foreground/20 transition-colors"
+            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors"
             onClick={() => setSelectedImage(null)}
           >
             <X className="w-6 h-6" />
@@ -126,26 +82,21 @@ const Gallery = () => {
       )}
 
       {/* Reviews Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 mb-4 text-sm font-medium rounded-full bg-primary/10 text-primary">
-              Testimonials
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-              Reviews
-            </h2>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground text-center uppercase tracking-wider mb-12">
+            Reviews
+          </h2>
 
           <div className="max-w-3xl mx-auto">
-            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-elegant border border-border text-center">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="bg-card p-8 md:p-12 rounded-xl border border-border text-center">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/20 flex items-center justify-center">
                 <span className="text-2xl font-display font-bold text-primary">MJ</span>
               </div>
-              <p className="text-xl md:text-2xl font-display text-foreground mb-6 leading-relaxed">
+              <p className="text-primary font-semibold mb-4">@MONICA_JOHN</p>
+              <p className="text-xl md:text-2xl font-display italic text-foreground mb-6 leading-relaxed">
                 "Amazing experience from start to finish! Everything was handled so smoothly, the itinerary was well-planned, the hotel choices were excellent, and the local guides were knowledgeable and friendly."
               </p>
-              <div className="text-primary font-semibold">@MONICA_JOHN</div>
               <div className="flex justify-center gap-1 mt-4">
                 {[...Array(5)].map((_, i) => (
                   <svg
@@ -157,8 +108,8 @@ const Gallery = () => {
                   </svg>
                 ))}
               </div>
-              <button className="mt-8 text-primary font-medium hover:underline">
-                View More Reviews
+              <button className="mt-8 text-primary font-medium hover:underline uppercase tracking-wider">
+                View More
               </button>
             </div>
           </div>
@@ -166,17 +117,17 @@ const Gallery = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-accent">
+      <section className="py-20 bg-card">
         <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-accent-foreground mb-4">
+          <p className="text-primary font-semibold uppercase tracking-widest mb-4">
+            Get Started Today!
+          </p>
+          <h2 className="text-4xl md:text-5xl title-italic text-foreground mb-8">
             Create Your Own Memories
           </h2>
-          <p className="text-accent-foreground/70 mb-8 max-w-2xl mx-auto">
-            Start your journey today and let us capture unforgettable moments for you.
-          </p>
-          <a href="/packages" className="btn-hero inline-flex">
+          <Link to="/packages" className="btn-hero">
             Book Your Trip
-          </a>
+          </Link>
         </div>
       </section>
     </Layout>

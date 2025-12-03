@@ -1,90 +1,61 @@
 import { Link } from "react-router-dom";
-import { Plane, MapPin, Phone, Mail, Facebook, Instagram, Youtube } from "lucide-react";
+import { Facebook, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-accent text-accent-foreground">
-      <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <Plane className="w-5 h-5 text-primary-foreground" />
+    <footer className="bg-background border-t-4 border-primary">
+      <div className="container mx-auto px-4 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Left Column - Logo & Address */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-foreground tracking-wider">LOGO</h3>
+            
+            <div className="space-y-4">
+              <h4 className="text-primary font-semibold tracking-wider">ADDRESS</h4>
+              <div className="space-y-2 text-muted-foreground text-sm uppercase tracking-wide">
+                <p>BOOKING YATRA SONIKAS PARADISE PINTOS</p>
+                <p>VADDO, CANDOLIM, GOA 403515</p>
+                <p>9172994022</p>
+                <p>TEAMYATRATOURS@GMAIL.COM</p>
               </div>
-              <span className="text-2xl font-display font-bold">
-                Yatra<span className="text-primary">Tours</span>
-              </span>
-            </Link>
-            <p className="text-accent-foreground/70 text-sm leading-relaxed">
-              We take pride in helping people from all walks of life achieve the journey and peace they deserve.
-            </p>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-display text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              {["Home", "About", "Packages", "Services", "Gallery"].map((item) => (
-                <li key={item}>
-                  <Link
-                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-accent-foreground/70 hover:text-primary transition-colors text-sm"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-display text-lg font-semibold mb-4">Contact Us</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm text-accent-foreground/70">
-                <MapPin className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
-                <span>Sonikas Paradise, Pintos Vaddo, Candolim, Goa 403515</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm text-accent-foreground/70">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>+91 9172994022</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm text-accent-foreground/70">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>teamyatratours@gmail.com</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Networks */}
-          <div>
-            <h4 className="font-display text-lg font-semibold mb-4">Social Networks</h4>
-            <div className="flex gap-4">
+          {/* Right Column - Social Networks */}
+          <div className="md:text-right">
+            <h4 className="text-primary font-semibold tracking-wider mb-6">SOCIAL NETWORKS</h4>
+            <div className="flex md:justify-end gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-6 h-6 text-[#1877F2]" />
+                <span className="text-sm font-medium">FACEBOOK</span>
               </a>
+            </div>
+            <div className="flex md:justify-end gap-4 mt-3">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-6 h-6 text-[#E4405F]" />
+                <span className="text-sm font-medium">INSTAGRAM</span>
               </a>
+            </div>
+            <div className="flex md:justify-end gap-4 mt-3">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
               >
-                <Youtube className="w-5 h-5" />
+                <Youtube className="w-6 h-6 text-[#FF0000]" />
+                <span className="text-sm font-medium">YOUTUBE</span>
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-accent-foreground/10 mt-12 pt-8 text-center">
-          <p className="text-accent-foreground/50 text-sm">
+        <div className="mt-12 pt-8 border-t border-border text-center">
+          <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Yatra Tours. All rights reserved.
           </p>
         </div>
