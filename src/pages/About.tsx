@@ -15,7 +15,7 @@ const About = () => {
         <div className="absolute inset-0 bg-background/70" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl title-italic text-primary mb-6">
-            About Your Company
+           About Booking with GoaYatra
           </h1>
         </div>
       </section>
@@ -29,11 +29,13 @@ const About = () => {
                 Crafting Extraordinary Journeys Since 2009
               </h2>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Yatra Tours was founded with a simple vision: to make world-class travel experiences accessible to everyone. Over the years, we have grown from a small team of passionate travelers to one of the most trusted names in the tourism industry.
+                GoaYatra is committed to providing safe, comfortable, and memorable travel experiences. However, we are not responsible for any loss of life, property, valuables, or baggage caused by natural calamities such as tsunamis, earthquakes, volcanic eruptions, cyclones, floods, or other unforeseen natural events.
               </p>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                We take pride in helping people from all walks of life achieve the journey and peace they deserve. Our dedicated team works tirelessly to ensure every trip is perfectly planned, from the moment you book until you return home with unforgettable memories.
+               Similarly, GoaYatra will not be liable for any loss of life, property, valuables, or baggage resulting from man-made incidents including fire, theft, accidents, war, strikes, or riots. We strongly recommend travelers to take appropriate travel insurance for their safety and protection.
               </p>
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                Our goal is to ensure your journey is smooth and enjoyable, but certain situations remain beyond our control.</p>
               
               <Link to="/packages" className="btn-hero inline-flex">
                 View Packages
@@ -103,27 +105,31 @@ const About = () => {
             <ul className="space-y-4 text-foreground/90 uppercase text-sm tracking-wide mb-8">
               <li className="flex items-start gap-3">
                 <span className="text-primary text-lg">•</span>
-                Sightseeing tours as per group size
+                North Goa Sightseeing (AC Coach Tour)
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary text-lg">•</span>
-                Adventure activities (chargeable)
+                South Goa Sightseeing (AC Coach Tour)
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary text-lg">•</span>
-                Hotel service with breakfast
+               Scuba Diving & Water Sports – Grand Island
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary text-lg">•</span>
-                Dinner arrangements
+                Romantic Dinner Cruise Party
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary text-lg">•</span>
-                Arrival and departure assistance
+                Arrival and depDudhsagar Waterfalls Trip
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary text-lg">•</span>
-                Professional tour guide services
+                Adventure Boat Cruise
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-primary text-lg">•</span>
+                Water Sports Combo Pack
               </li>
             </ul>
 

@@ -1,187 +1,163 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import thailandPackage from "@/assets/thailand-package.jpg";
-import baliPackage from "@/assets/bali-package.jpg";
-import maldivesPackage from "@/assets/maldives-package.jpg";
-import dubaiPackage from "@/assets/dubai-package.jpg";
-import goaPackage from "@/assets/goa-package.jpg";
-import singaporePackage from "@/assets/singapore-package.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+const bottomNotes = [
+  "3 Star Resorts with Swimming Pool near Baga & Calangute Beach",
+  "All Sightseeing by AC Coach",
+  "Instead of 1 Day Tour, 1 Day Bike can be provided",
+  "Off Season Discount / Dynamic Pricing Applicable",
+  "All activities subject to availability",
+  "Resorts can be changed based on availability at the time of booking",
+];
 
 const packages = [
   {
-    id: 1,
-    name: "Thailand",
-    duration: "5 Days and 4 Nights Tour",
-    price: "Rs.24450/-",
-    image: thailandPackage,
-    note: "Air Fare + visa Extra",
+    title: "Basic Package – 2N / 3 Days",
+    items: [
+      "2 Night Stay AC Room",
+      "2 Days Breakfast",
+      "2 Days Dinner",
+      "Pick up & Drop",
+      "1 Day South Goa Tour",
+      "1 Day North Goa Tour",
+      "Couple – 10,800 / couple",
+      "Group – 4,800 / person",
+    ],
+    img: gallery1,
   },
   {
-    id: 2,
-    name: "Bali",
-    duration: "6 Days and 5 Nights Tour",
-    price: "Rs.32999/-",
-    image: baliPackage,
-    note: "Air Fare + visa Extra",
+    title: "Adventure Package – 2N / 3 Days",
+    items: [
+      "2 Night Stay AC Room",
+      "2 Days Breakfast",
+      "2 Night Dinner",
+      "Pick up & Drop",
+      "1 Night Club Music Dinner Party",
+      "Scuba @ Grand Island Package",
+      "1 Day South Goa Tour",
+      "1 Day North Goa Tour",
+      "Couple – 15,500",
+      "Group – 4,500 per person",
+    ],
+    img: gallery1,
   },
   {
-    id: 3,
-    name: "Maldives",
-    duration: "4 Days and 3 Nights Tour",
-    price: "Rs.45999/-",
-    image: maldivesPackage,
-    note: "Air Fare + visa Extra",
+    title: "Premium Package – 3N / 4 Days",
+    items: [
+      "3 Nights Stay AC Room",
+      "3 Days Breakfast",
+      "3 Nights Dinner",
+      "1 Night Cruise Dinner Party",
+      "1 Day Dudhsagar Fall Day Trip",
+      "1 Day South Goa Tour",
+      "1 Day North Goa Tour",
+      "Pick up & Drop",
+      "Couple – 17,000",
+      "Group Sharing – 7,000",
+    ],
+    img: gallery1
+    ,
   },
   {
-    id: 4,
-    name: "Dubai",
-    duration: "5 Days and 4 Nights Tour",
-    price: "Rs.38999/-",
-    image: dubaiPackage,
-    note: "Air Fare + visa Extra",
-  },
-  {
-    id: 5,
-    name: "Goa",
-    duration: "3 Days and 2 Nights Tour",
-    price: "Rs.12999/-",
-    image: goaPackage,
-    note: "Per Person",
-  },
-  {
-    id: 6,
-    name: "Singapore",
-    duration: "4 Days and 3 Nights Tour",
-    price: "Rs.35999/-",
-    image: singaporePackage,
-    note: "Air Fare + visa Extra",
+    title: "Basic Package – 3N / 4 Days",
+    items: [
+      "3 Night Stay AC Room",
+      "3 Days Breakfast",
+      "3 Night Dinner",
+      "Pick up & Drop",
+      "1 Day South Goa Tour",
+      "1 Day North Goa Tour",
+      "Couple – 11,500",
+      "Group – 4,500",
+    ],
+    img
+    : gallery1,
   },
 ];
 
 const Packages = () => {
+  const [index, setIndex] = useState(0);
+
+  const next = () => index < packages.length - 3 && setIndex(index + 1);
+  const prev = () => index > 0 && setIndex(index - 1);
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground uppercase tracking-wider">
-            Packages
-          </h1>
-        </div>
-      </section>
+      <section className="bg-background">
+      <div className="w-full max-w-7xl mx-auto py-10 relative">
+        <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground text-center uppercase tracking-wider mb-12">
+             Package
+          </h2>
+        {/* LEFT ARROW */}
+        <button
+          onClick={prev}
+          className="absolute top-1/2 -left-12 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full z-10 hover:bg-gray-100 transition"
+        >
+          <ChevronLeft className="text-gray-700" />
+        </button>
 
-      {/* Packages Grid - Poster Style */}
-      <section className="py-12 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className="relative group cursor-pointer"
-              >
-                {/* Package Card - Poster Style */}
-                <div className="relative bg-gradient-to-b from-primary to-accent rounded-lg overflow-hidden shadow-elegant">
-                  {/* Header */}
-                  <div className="p-4 text-center">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-background">
-                        {pkg.duration.split(' ')[0]} <span className="text-2xl">{pkg.duration.split(' ')[1]}</span> {pkg.duration.split(' ')[2]}
-                      </span>
-                      <div className="text-right text-background text-xs uppercase">
-                        <div>JOY</div>
-                        <div>TOURISM</div>
-                      </div>
-                    </div>
-                  </div>
+        {/* SLIDER */}
+        <div className="overflow-hidden rounded-xl">
+          <div
+            className="flex gap-5 transition-transform duration-500"
+            style={{ transform: `translateX(-${index * 34}%)` }}
+          >
+            {packages.map((pkg, i) => (
+              <div key={i} className="min-w-[33%]">
+                <div className="bg-white border shadow-md rounded-xl overflow-hidden h-[550px] flex flex-col">
 
-                  {/* Destination Name */}
-                  <div className="relative px-4">
-                    <h2 className="text-4xl md:text-5xl title-italic text-background text-center">
-                      {pkg.name}
+                  {/* IMAGE */}
+                  <img
+                    src={pkg.img}
+                    className="h-44 w-full object-cover"
+                  />
+
+                  {/* CONTENT */}
+                  <div className="p-4 flex-1 overflow-auto">
+
+                    <h2 className="text-lg font-bold mb-2 text-[#1a3d5c]">
+                      {pkg.title}
                     </h2>
-                    <p className="text-background/80 text-xs text-center mt-1">Per Person</p>
-                  </div>
 
-                  {/* Price Tag */}
-                  <div className="mx-4 mt-4 bg-primary rounded-lg p-3 text-center transform rotate-[-3deg]">
-                    <p className="text-xs text-background/80">Starting @</p>
-                    <p className="text-xl font-bold text-background">{pkg.price}</p>
-                    <p className="text-xs text-background/80">{pkg.note}</p>
-                  </div>
+                    <ul className="text-sm text-gray-700 space-y-1 mb-3 leading-relaxed">
+                      {pkg.items.map((item, idx) => (
+                        <li key={idx}><span className="text-primary">•</span> {item}</li>
+                      ))}
+                    </ul>
 
-                  {/* Image */}
-                  <div className="mt-4 relative">
-                    <img
-                      src={pkg.image}
-                      alt={pkg.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    {/* Circular Images Overlay */}
-                    <div className="absolute -top-6 left-4 flex gap-2">
-                      <div className="w-16 h-16 rounded-full border-4 border-primary overflow-hidden">
-                        <img src={pkg.image} alt="" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="w-16 h-16 rounded-full border-4 border-primary overflow-hidden">
-                        <img src={pkg.image} alt="" className="w-full h-full object-cover scale-110" />
-                      </div>
+                    {/* BOTTOM NOTES */}
+                    <div className="border-t pt-3 mt-3  text-gray-500 text-xs space-y-1">
+                      {bottomNotes.map((note, n) => (
+                        <p key={n}>• {note}</p>
+                      ))}
                     </div>
-                  </div>
+                    <Link
+                      to="/contact"
+                      className="btn-hero mt-5 inline-flex items-center gap-2"
+                    >
+                      Book Now <ArrowRight className="w-5 h-5" />
+                    </Link>
 
-                  {/* Inclusions */}
-                  <div className="bg-foreground/90 p-4">
-                    <h4 className="text-primary font-semibold text-sm mb-2">Inclusions</h4>
-                    <div className="text-xs text-muted-foreground space-y-1">
-                      <p>• Hotel Accommodation</p>
-                      <p>• Daily Breakfast</p>
-                      <p>• Sightseeing Tours</p>
-                      <p>• Airport Transfers</p>
-                    </div>
-                    
-                    <div className="mt-4 pt-3 border-t border-border">
-                      <p className="text-primary text-xs font-semibold">Fixed Departure</p>
-                      <p className="text-muted-foreground text-xs">Contact: +91 9362556555</p>
-                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Carousel Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {[1, 2, 3, 4, 5].map((dot) => (
-              <div
-                key={dot}
-                className={`w-3 h-3 rounded-full ${dot === 1 ? "bg-foreground" : "bg-muted-foreground"}`}
-              />
-            ))}
-          </div>
-
-          {/* Book Now Button */}
-          <div className="text-center mt-8">
-            <Link to="/contact" className="btn-teal text-xl px-12">
-              Book Now
-            </Link>
-          </div>
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <p className="text-primary font-semibold uppercase tracking-widest mb-4">
-            Get Started Today!
-          </p>
-          <h2 className="text-4xl md:text-5xl title-italic text-foreground mb-4">
-            Join Us and Discover More!
-          </h2>
-          <p className="text-muted-foreground mb-8">
-            Contact: +919362556555 | Website: www.joytourism.in
-          </p>
-          <Link to="/contact" className="btn-hero">
-            Contact Us
-          </Link>
-        </div>
+        {/* RIGHT ARROW */}
+        <button
+          onClick={next}
+          className="absolute top-1/2 -right-12 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full z-10 hover:bg-gray-100 transition"
+        >
+          <ChevronRight className="text-gray-700" />
+        </button>
+
+      </div>
       </section>
     </Layout>
   );
